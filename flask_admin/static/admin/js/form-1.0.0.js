@@ -155,10 +155,15 @@
         }
 
         // set up tiles
-        L.tileLayer('http://{s}.tiles.mapbox.com/v3/'+MAPBOX_MAP_ID+'/{z}/{x}/{y}.png', {
+        var mapbox = new L.tileLayer('http://{s}.tiles.mapbox.com/v3/'+MAPBOX_MAP_ID+'/{z}/{x}/{y}.png', {
           attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
           maxZoom: 18
-        }).addTo(map);
+        });
+        var bing = new L.BingLayer("Anqm0F_JjIZvT0P3abS6KONpaBaKuTnITRrnYuiJCE0WOhH6ZbE4DzeT6brvKVR5");
+        map.addLayer(mapbox);
+        map.addControl(new L.Control.Layers( {'Mapbox':mapbox, "Bing":bing}, {}));
+        
+        
 
 
         // everything below here is to set up editing, so if we're not editable,
